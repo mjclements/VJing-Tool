@@ -1,10 +1,5 @@
 #include "AbstractAnalyzer.hpp"
 
-class AbstractAnalyzer {
-
-private:
-    vector<Connector *> observers{};
-    AudioStream audioStream;
 
 AbstractAnalyzer::AbstractAnalyzer(){ };
 
@@ -13,8 +8,7 @@ AbstractAnalyzer::AbstractAnalyzer(){ };
 
 AbstractAnalyzer::AbstractAnalyzer(AudioStream as)
 {
-    observers =  { };
-    audioStream = as;
+    audioStream = & as;
 
 }
 
@@ -28,13 +22,8 @@ double	AbstractAnalyzer::getValue()
 	
 }
 
-void	AbstractAnalyzer::setValue()
-{
-	
-}
 
-void    AbstractAnalyzer::~AbstractAnalyzer(){
+AbstractAnalyzer::~AbstractAnalyzer(){
     delete &observers;
 }
 
-};

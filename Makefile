@@ -107,7 +107,7 @@ all:
 $(BUILD_ROOT)/%.o: %.$(CXXEXT)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(GEN_DEP_FLAG) -c -o $@  $<
-	@if [ $$(nm -g --format="posix" $@ | grep -c "^main T") -eq 1 ]; then 		\
+	@if [ $$(nm -g --format="posix" $@ | grep -c "main") -eq 1 ]; then 		\
 		echo "$(patsubst $(BUILD_ROOT)/%.o,%.$(CXXEXT),$@)" >> $(em_f_entries);	\
 		sort -u $(em_f_entries) -o $(em_f_entries); 							\
 	fi;

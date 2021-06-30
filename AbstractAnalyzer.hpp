@@ -1,6 +1,6 @@
 #pragma once
 
-#include <list>
+#include <vector>
 
 #include "AudioStream.hpp"
 #include "Connector.hpp"
@@ -15,10 +15,11 @@ public:
     AbstractAnalyzer(const AbstractAnalyzer &a); // Copy Constructor
     void registerConnector(Connector toInform);
     double getValue();
-    void setValue();
+    void setValue(unsigned int *PCMCodes); //This will be where each Analyzer does its magic.
+    ~AbstractAnalyzer(); // Destructor
 private:
     double value;
-    list<Connector *> observers{};
+    vector<Connector *> observers;
     AudioStream *audioStream;
 
 };
