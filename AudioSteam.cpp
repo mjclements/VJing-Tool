@@ -1,0 +1,5 @@
+class AudioStream {
+
+    AudioStream();
+
+};
