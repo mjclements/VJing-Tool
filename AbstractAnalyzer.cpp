@@ -24,6 +24,5 @@ double	AbstractAnalyzer::getValue()
 
 
 AbstractAnalyzer::~AbstractAnalyzer(){
-    delete &observers;
 }
 
