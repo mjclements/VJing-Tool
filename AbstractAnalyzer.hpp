@@ -1,16 +1,25 @@
 #pragma once
+
+#include <list>
+
 #include "AudioStream.hpp"
 #include "Connector.hpp"
+
+using namespace std;
 
 class AbstractAnalyzer {
 
 public:
-    AbstractAnalyzer(AudioStream as);
+    AbstractAnalyzer(); //Default Constructor
+    AbstractAnalyzer(AudioStream as); 
+    AbstractAnalyzer(const AbstractAnalyzer &a); // Copy Constructor
     void registerConnector(Connector toInform);
     double getValue();
     void setValue();
 private:
     double value;
-    AudioStream audioStream;
+    list<Connector *> observers{};
+    AudioStream *audioStream;
+
 };
 
