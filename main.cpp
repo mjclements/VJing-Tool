@@ -6,6 +6,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h> // for sin()
 #include <stdint.h>
+#include <iomanip>
+#include <vector>
 #define AUTOCONVERTPCM_QUALITY 0x88000000
 int main()
 {
@@ -37,6 +39,7 @@ int main()
     hr = audioClient->GetService(__uuidof(IAudioCaptureClient), (LPVOID*) &captureClient);
     assert( hr == S_OK );
     hr = audioClient->Start();
+    
     Sleep(4000);
     BYTE* bufferByte; //pointer to the start of the buffer
     UINT32 numberOfAvailableFrames; 
@@ -46,13 +49,18 @@ int main()
     UINT32 packetLength = 0;
     hr = captureClient->GetNextPacketSize(&packetLength);
     hr = captureClient->GetBuffer(&bufferByte, &numberOfAvailableFrames, &flags, &devicePosition, &qpcPosition );
-
+    
     std::cout << std::hex << hr;
 
     assert( hr == S_OK || hr == AUDCLNT_S_BUFFER_EMPTY);
-
+    int16_t* codePointer = (int16_t*) bufferByte;
     if(hr == S_OK){  //Don't inform the Analyzers unless you've got new music!
-        std::cout << *bufferByte << std::endl;
+        std::vector<int16_t> frame = {};
+        for(int i = 0; i < packetLength/2; i+=2 ){
+            frame.push_back(codePointer[i]);
+            std::cout << std::dec << codePointer[i] << ", ";
+
+        }
     }
     // UINT32* numBuffFrames;
     // hr = audioClient->GetCurrentPadding(numBuffFrames);
