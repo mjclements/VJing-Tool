@@ -1,12 +1,12 @@
 #pragma once
 
 #include <vector>
+#include <stdint.h>
 
-#include "AudioStream.hpp"
-#include "Connector.hpp"
 
 using namespace std;
-
+class AudioStream;
+class Connector;
 class AbstractAnalyzer {
 
 public:
@@ -14,11 +14,11 @@ public:
     AbstractAnalyzer(AudioStream as); 
     AbstractAnalyzer(const AbstractAnalyzer &a); // Copy Constructor
     void registerConnector(Connector toInform);
-    double getValue();
-    void setValue(unsigned int *PCMCodes); //This will be where each Analyzer does its magic.
+    int64_t getValue();
+    virtual void setValue(std::vector<int16_t> *PCMCodes) {}; //This will be where each Analyzer does its magic.
     ~AbstractAnalyzer(); // Destructor
-private:
-    double value;
+protected:
+    int64_t value;
     vector<Connector *> observers;
     AudioStream *audioStream;
 

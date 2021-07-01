@@ -1,5 +1,5 @@
 #pragma once
 class Visual {
     public: 
-        void draw();
+        virtual void draw() {};
 };

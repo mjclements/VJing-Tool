@@ -2,12 +2,21 @@
 #include <audioclient.h>
 #include <stdint.h>
 #include <vector>
+class AbstractAnalyzer;
+
 class AudioStream {
-    private:
-        IAudioClient* audioClient;
-        IAudioCaptureClient* captureClient;
+
     public:
         AudioStream();
         std::vector<int16_t> getFrame();
+      //  void register(AbstractAnalyzer analyzer);
+      void registerObserver(AbstractAnalyzer *analyzer);
+      
+    private:
+        IAudioClient* audioClient;
+        IAudioCaptureClient* captureClient;
+        std::vector<AbstractAnalyzer *> analyzers;
+    protected:
+        std::vector<int16_t> buffer;
 };
 

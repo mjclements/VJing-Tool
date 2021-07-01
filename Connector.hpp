@@ -1,9 +1,18 @@
 #pragma once
 #include "Visual.hpp"
+#include <stdint.h>
+#include <vector>
+class Visual;
+
 class Connector {
     public:
-        double getValue();
-        void registerVisual(Visual v);
+        int32_t getValue();
+        void registerVisual(Visual *v);
+        virtual void setValue(int64_t AnalysisValue) {};
+    protected:
+        int64_t value;
+        std::vector<Visual *> visuals;
+
 
 };
 

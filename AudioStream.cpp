@@ -7,9 +7,13 @@
 #include <iomanip>
 #include <vector>
 #include "AudioStream.hpp"
+#include "AbstractAnalyzer.hpp"
 #define AUTOCONVERTPCM_QUALITY 0x88000000
 AudioStream::AudioStream()
 {
+    analyzers = {};
+    buffer = {};
+    //Beging Windows API connection code
 	HRESULT hr = CoInitializeEx(nullptr, COINIT_SPEED_OVER_MEMORY);
     assert(hr==S_OK);
     IMMDeviceEnumerator* deviceEnum;
@@ -49,7 +53,6 @@ std::vector<int16_t> AudioStream::getFrame(){
     
     assert( hr == S_OK || hr == AUDCLNT_S_BUFFER_EMPTY);
     int16_t* codePointer = (int16_t*) bufferByte;
-    std::vector<int16_t> buffer = {};
     if(hr == S_OK){  //Don't inform the Analyzers unless you've got new music!
         for(int i = 0; i < packetLength/2; i+=2 ){
             buffer.push_back(codePointer[i]);
@@ -57,6 +60,19 @@ std::vector<int16_t> AudioStream::getFrame(){
 
         }
         captureClient->ReleaseBuffer(packetLength); //releasing number of frames read from the buffer
-    }
+        for(AbstractAnalyzer *observer : analyzers)
+        {
+            observer->setValue(&buffer);
+        }
+        buffer.clear();
+        }
     return buffer;
 }
+
+
+
+void AudioStream::registerObserver(AbstractAnalyzer *analyzer)
+{
+    analyzers.push_back(analyzer);
+}
+

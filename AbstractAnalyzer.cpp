@@ -1,5 +1,6 @@
 #include "AbstractAnalyzer.hpp"
-
+#include "AudioStream.hpp"
+#include "Connector.hpp"
 
 AbstractAnalyzer::AbstractAnalyzer(){ };
 
@@ -17,12 +18,13 @@ void	AbstractAnalyzer::registerConnector(Connector toInform)
 	observers.push_back(&toInform);
 }
 
-double	AbstractAnalyzer::getValue()
+int64_t	AbstractAnalyzer::getValue()
 {
-	
+	return value;
 }
 
 
 AbstractAnalyzer::~AbstractAnalyzer(){
 }
+
 
