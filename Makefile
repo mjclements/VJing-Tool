@@ -24,7 +24,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # CFLAGS=
-# CXXFLAGS=
+CXXFLAGS= -lole32
 # LDFLAGS=
 
 # do not use the default `rv` option
