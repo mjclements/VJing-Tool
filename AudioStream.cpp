@@ -12,7 +12,8 @@
 AudioStream::AudioStream()
 {
     analyzers = {};
-    buffer = {};
+    leftBuffer = {};
+    rightBuffer = {};
     //Beging Windows API connection code
 	HRESULT hr = CoInitializeEx(nullptr, COINIT_SPEED_OVER_MEMORY);
     assert(hr==S_OK);
@@ -55,18 +56,22 @@ std::vector<int16_t> AudioStream::getFrame(){
     int16_t* codePointer = (int16_t*) bufferByte;
     if(hr == S_OK){  //Don't inform the Analyzers unless you've got new music!
         for(int i = 0; i < packetLength/2; i+=2 ){
-            buffer.push_back(codePointer[i]);
+            leftBuffer.push_back(codePointer[i]);
+            rightBuffer.push_back(codePointer[i+1]);
+            centerBuffer.push_back(codePointer[i]/2 + codePointer[i+1]/2); //avg of L and R channels
             //std::cout << std::dec << codePointer[i] << ", ";
 
         }
         captureClient->ReleaseBuffer(packetLength); //releasing number of frames read from the buffer
         for(AbstractAnalyzer *observer : analyzers)
         {
-            observer->setValue(&buffer);
+            observer->setValue(&centerBuffer);
         }
-        buffer.clear();
+        leftBuffer.clear();
+        rightBuffer.clear();
+        centerBuffer.clear();
         }
-    return buffer;
+    return leftBuffer;
 }
 
 

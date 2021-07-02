@@ -17,6 +17,9 @@ class AudioStream {
         IAudioCaptureClient* captureClient;
         std::vector<AbstractAnalyzer *> analyzers;
     protected:
-        std::vector<int16_t> buffer;
+        std::vector<int16_t> leftBuffer;
+        std::vector<int16_t> rightBuffer;
+        std::vector<int16_t> centerBuffer;
+
 };
 
