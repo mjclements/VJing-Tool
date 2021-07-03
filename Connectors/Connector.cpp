@@ -3,7 +3,7 @@
 
 int32_t	 Connector::getValue()
 {
-    return 1;
+    return value;
 }
 
 void Connector::registerVisual(Visual *v)

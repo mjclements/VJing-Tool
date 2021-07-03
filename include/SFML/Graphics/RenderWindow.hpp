@@ -211,9 +211,9 @@ private:
 /// It defines an OS window that can be painted using the other
 /// classes of the graphics module.
 ///
-/// sf::RenderWindow is derived from sf::Window, thus it inherits
+/// sf::RenderWindow is derived from sf::RenderWindow, thus it inherits
 /// all its features: events, window management, OpenGL rendering,
-/// etc. See the documentation of sf::Window for a more complete
+/// etc. See the documentation of sf::RenderWindow for a more complete
 /// description of all these features, as well as code examples.
 ///
 /// On top of that, sf::RenderWindow adds more features related to
@@ -253,7 +253,7 @@ private:
 /// }
 /// \endcode
 ///
-/// Like sf::Window, sf::RenderWindow is still able to render direct
+/// Like sf::RenderWindow, sf::RenderWindow is still able to render direct
 /// OpenGL stuff. It is even possible to mix together OpenGL calls
 /// and regular SFML drawing commands.
 ///
@@ -297,6 +297,6 @@ private:
 /// }
 /// \endcode
 ///
-/// \see sf::Window, sf::RenderTarget, sf::RenderTexture, sf::View
+/// \see sf::RenderWindow, sf::RenderTarget, sf::RenderTexture, sf::View
 ///
 ////////////////////////////////////////////////////////////

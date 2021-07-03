@@ -123,7 +123,7 @@ public:
     ////////////////////////////////////////////////////////////
     /// \brief Close the window and destroy all the attached resources
     ///
-    /// After calling this function, the sf::Window instance remains
+    /// After calling this function, the sf::RenderWindow instance remains
     /// valid and you can call create() to recreate the window.
     /// All other functions such as pollEvent() or display() will
     /// still work (i.e. you don't have to test isOpen() every time),
@@ -383,7 +383,7 @@ public:
     ////////////////////////////////////////////////////////////
     /// \brief Get the OS-specific handle of the window
     ///
-    /// The type of the returned handle is sf::WindowHandle,
+    /// The type of the returned handle is sf::RenderWindowHandle,
     /// which is a typedef to the handle type defined by the OS.
     /// You shouldn't need to use this function, unless you have
     /// very specific stuff to implement that SFML doesn't support,
@@ -481,15 +481,15 @@ private:
 
 
 ////////////////////////////////////////////////////////////
-/// \class sf::WindowBase
+/// \class sf::RenderWindowBase
 /// \ingroup window
 ///
-/// sf::WindowBase serves as the base class for all Windows.
+/// sf::RenderWindowBase serves as the base class for all Windows.
 ///
-/// A sf::WindowBase can create its own new window, or be embedded into
+/// A sf::RenderWindowBase can create its own new window, or be embedded into
 /// an already existing control using the create(handle) function.
 ///
-/// The sf::WindowBase class provides a simple interface for manipulating
+/// The sf::RenderWindowBase class provides a simple interface for manipulating
 /// the window: move, resize, show/hide, control mouse cursor, etc.
 /// It also provides event handling through its pollEvent() and waitEvent()
 /// functions.
@@ -497,7 +497,7 @@ private:
 /// Usage example:
 /// \code
 /// // Declare and create a new window
-/// sf::WindowBase window(sf::VideoMode(800, 600), "SFML window");
+/// sf::RenderWindowBase window(sf::VideoMode(800, 600), "SFML window");
 ///
 /// // The main loop - ends as soon as the window is closed
 /// while (window.isOpen())

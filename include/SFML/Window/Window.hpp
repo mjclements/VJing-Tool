@@ -169,7 +169,7 @@ public:
     ////////////////////////////////////////////////////////////
     /// \brief Close the window and destroy all the attached resources
     ///
-    /// After calling this function, the sf::Window instance remains
+    /// After calling this function, the sf::RenderWindow instance remains
     /// valid and you can call create() to recreate the window.
     /// All other functions such as pollEvent() or display() will
     /// still work (i.e. you don't have to test isOpen() every time),
@@ -288,13 +288,13 @@ private:
 
 
 ////////////////////////////////////////////////////////////
-/// \class sf::Window
+/// \class sf::RenderWindow
 /// \ingroup window
 ///
-/// sf::Window is the main class of the Window module. It defines
+/// sf::RenderWindow is the main class of the Window module. It defines
 /// an OS window that is able to receive an OpenGL rendering.
 ///
-/// A sf::Window can create its own new window, or be embedded into
+/// A sf::RenderWindow can create its own new window, or be embedded into
 /// an already existing control using the create(handle) function.
 /// This can be useful for embedding an OpenGL rendering area into
 /// a view which is part of a bigger GUI with existing windows,
@@ -302,7 +302,7 @@ private:
 /// area into a window created by another (probably richer) GUI library
 /// like Qt or wxWidgets.
 ///
-/// The sf::Window class provides a simple interface for manipulating
+/// The sf::RenderWindow class provides a simple interface for manipulating
 /// the window: move, resize, show/hide, control mouse cursor, etc.
 /// It also provides event handling through its pollEvent() and waitEvent()
 /// functions.
@@ -324,7 +324,7 @@ private:
 /// Usage example:
 /// \code
 /// // Declare and create a new window
-/// sf::Window window(sf::VideoMode(800, 600), "SFML window");
+/// sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 ///
 /// // Limit the framerate to 60 frames per second (this step is optional)
 /// window.setFramerateLimit(60);

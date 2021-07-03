@@ -2,7 +2,7 @@ C_COMPILER	=	gcc
 CXX_COMPILER	=	g++
 
 #FLAGS	=	-lole32
-FLAGS 	=	-lsfml-window -lsfml-system
+FLAGS 	=	-lsfml-window -lsfml-system -lsfml-graphics -rpath vendor/SFML/Frameworks
 ##All objects files will be stored in the ./lib directory
 ##All header files should be present in the ./include directory
 
@@ -11,13 +11,12 @@ all:	main.cpp visualizers analyzers connectors
 	$(CXX_COMPILER) main.cpp AudioStream.cpp $(shell find lib/*.o)  -I'./include/'  $(FLAGS)
 
 ##Build every cpp file in Visualizers/ directory
-visualizers:	Visualizers/
-	$(CXX_COMPILER) ./Visualizers/*.cpp -o ./lib/ -c $(FLAGS)
+visualizers:	$(shell find Visualizers/)
+	cd lib && $(CXX_COMPILER)  -c ../Visualizers/*.cpp -I../include/ -L'../lib' $(FLAGS)
 
 ##Build every cpp file in Analyzers/ directory
 analyzers:	$(shell find Analyzers -type f)
 	cd lib && $(CXX_COMPILER)  -c ../Analyzers/*.cpp -I../include/ -L'../lib' $(FLAGS)
-
 
 ##Build every cpp file in Connectors/ directory
 connectors:	$(shell find Connectors -type f)

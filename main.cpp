@@ -1,19 +1,23 @@
 #include <SFML/Window.hpp>
-
+#include "VisualRenderer.hpp"
+#include "CircleVisualizer.hpp"
 int main()
 {
-    sf::Window window(sf::VideoMode(800, 600), "My window");
 
+    VisualRenderer *vRender = new VisualRenderer();
     // run the program as long as the window is open
-    while (window.isOpen())
+    CircleVisualizer *cv = new CircleVisualizer(vRender->window);
+    while (vRender->window->isOpen())
     {
+        cv->draw();
+        vRender->window->display();
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
-        while (window.pollEvent(event))
+        while (vRender->window->pollEvent(event))
         {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
-                window.close();
+                vRender->window->close();
         }
     }
 
