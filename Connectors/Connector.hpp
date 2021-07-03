@@ -1,5 +1,4 @@
 #pragma once
-#include "Visual.hpp"
 #include <stdint.h>
 #include <vector>
 class Visual;

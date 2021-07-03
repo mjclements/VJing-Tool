@@ -1,7 +1,4 @@
-#pragma once
 #include "LinearConnector.hpp"
-
-
 
 void	LinearConnector::setValue(int16_t AnalysisValue)
 {

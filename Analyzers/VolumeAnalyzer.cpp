@@ -1,7 +1,8 @@
 #include "VolumeAnalyzer.hpp"
 #include <cmath>
 #include <iostream>
-void VolumeAnalyzer::setValue(std::vector<int16_t> *PCMCodes)
+
+void	VolumeAnalyzer::setValue(std::vector<int16_t> *PCMCodes)
 {
    // std::cout << PCMCodes.size() << std::endl;
     value = 0;
@@ -14,5 +15,15 @@ void VolumeAnalyzer::setValue(std::vector<int16_t> *PCMCodes)
     for(Connector *c : observers){
         c->setValue(value);
     }
+	
+}
 
+VolumeAnalyzer::~VolumeAnalyzer()
+{
+	
+}
+
+VolumeAnalyzer::VolumeAnalyzer()
+{
+	
 }
