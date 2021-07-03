@@ -2,13 +2,13 @@ C_COMPILER	=	gcc
 CXX_COMPILER	=	g++
 
 #FLAGS	=	-lole32
-FLAGS 	=	''
+FLAGS 	=	-lsfml-window -lsfml-system
 ##All objects files will be stored in the ./lib directory
 ##All header files should be present in the ./include directory
 
 #Audiostream being in the main directory is feeling kinda like a hack
 all:	main.cpp visualizers analyzers connectors
-	$(CXX_COMPILER) main.cpp AudioStream.cpp $(shell find lib/*.o)  -I'./include/' $(FLAGS)
+	$(CXX_COMPILER) main.cpp AudioStream.cpp $(shell find lib/*.o)  -I'./include/'  $(FLAGS)
 
 ##Build every cpp file in Visualizers/ directory
 visualizers:	Visualizers/
@@ -27,3 +27,4 @@ clean:
 	rm lib/*
 	rm a.out
 	rm a.exe
+
