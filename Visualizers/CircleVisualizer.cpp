@@ -11,6 +11,7 @@ CircleVisualizer::CircleVisualizer(sf::RenderWindow * drawWindow) : AbstractVisu
     xConnector = nullptr;
     yConnector = nullptr;
     redConnector = nullptr;
+    1 + 1;
     greenConnector = nullptr;
     blueConnector = nullptr;
     circle = new sf::CircleShape();
@@ -58,7 +59,7 @@ sf::Color	CircleVisualizer::getColor()
     if(blueConnector){
         rgba_code = rgba_code | (blueConnector->getValue() / 2) << 8;
     }
-    u_int8_t alpha = 126; //Do we want alpha? Probably.
+    uint8_t alpha = 126; //Do we want alpha? Probably.
     rgba_code = rgba_code | alpha;
 
     return sf::Color(rgba_code);

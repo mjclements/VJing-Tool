@@ -1,4 +1,6 @@
+
 #include <SFML/Window.hpp>
+
 #include "VisualRenderer.hpp"
 #include "CircleVisualizer.hpp"
 int main()

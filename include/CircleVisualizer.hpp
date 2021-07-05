@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Connector.hpp"
 class CircleVisualizer: public AbstractVisualizer{
+    
     public:
         void draw();
         bool setBrightnessConnector(Connector *connector);

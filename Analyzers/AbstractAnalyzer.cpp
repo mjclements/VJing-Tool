@@ -13,9 +13,9 @@ AbstractAnalyzer::AbstractAnalyzer(AudioStream as)
 
 }
 
-void	AbstractAnalyzer::registerConnector(Connector toInform)
+void	AbstractAnalyzer::registerConnector(Connector *toInform)
 {
-	observers.push_back(&toInform);
+	observers.push_back(toInform);
 }
 
 int64_t	AbstractAnalyzer::getValue()
