@@ -16,7 +16,7 @@ void	VolumeAnalyzer::setValue(std::vector<int16_t> *PCMCodes)
     for(Connector *c : observers){
         c->setValue(value);
     }
-    cout << observers.size() << endl;
+   // cout << observers.size() << endl;
 	
 }
 

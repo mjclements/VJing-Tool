@@ -17,6 +17,8 @@ class CircleVisualizer: public AbstractVisualizer{
         void setRedConnector(Connector* connector);
         void setGreenConnector(Connector* connector);
         void setBlueConnector(Connector* connector);
+        sf::CircleShape *circle;
+
 
         ~CircleVisualizer();
 
@@ -32,6 +34,6 @@ class CircleVisualizer: public AbstractVisualizer{
         uint16_t getY();
         sf::Color getColor();
     private:
-        sf::CircleShape *circle;
+ //       sf::CircleShape *circle;
 
 };
