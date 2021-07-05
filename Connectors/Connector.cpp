@@ -11,3 +11,11 @@ void Connector::registerVisual(Visual *v)
 	visuals.push_back(v);
 }
 
+
+Connector::Connector(){
+
+}
+
+Connector::~Connector(){
+    
+}

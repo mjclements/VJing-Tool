@@ -1,6 +1,14 @@
 #include "LinearConnector.hpp"
 
-void	LinearConnector::setValue(int16_t AnalysisValue)
+void	LinearConnector::setValue(int64_t AnalysisValue)
 {
-    value = value;
+    value = AnalysisValue;
+}
+
+LinearConnector::LinearConnector(){
+    value = 255;
+}
+
+int32_t LinearConnector::getValue(){
+            return value;
 }

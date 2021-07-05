@@ -7,7 +7,9 @@ class Connector {
     public:
         int32_t getValue();
         void registerVisual(Visual *v);
-        virtual void setValue(int64_t AnalysisValue) = 0;
+        virtual void setValue(int64_t AnalysisValue) {};
+        Connector();
+        ~Connector();
     protected:
         int64_t value;
         std::vector<Visual *> visuals;

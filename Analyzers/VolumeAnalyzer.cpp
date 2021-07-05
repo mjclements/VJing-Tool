@@ -9,12 +9,14 @@ void	VolumeAnalyzer::setValue(std::vector<int16_t> *PCMCodes)
     for(int16_t PCMCode : *PCMCodes){
             value += std::abs(PCMCode);
     }
-    //cout << PCMCodes->size() << endl;
+    
     value = (value / (PCMCodes->size()+1));
+    //cout << value << endl;
 
     for(Connector *c : observers){
         c->setValue(value);
     }
+    cout << observers.size() << endl;
 	
 }
 
@@ -26,4 +28,9 @@ VolumeAnalyzer::~VolumeAnalyzer()
 VolumeAnalyzer::VolumeAnalyzer()
 {
 	
+}
+
+VolumeAnalyzer::VolumeAnalyzer(AudioStream * as) : AbstractAnalyzer::AbstractAnalyzer( as)
+{
+    
 }

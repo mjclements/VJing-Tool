@@ -1,9 +1,8 @@
 #pragma once
 #include <stdint.h>
 #include <vector>
+#include <audioclient.h>
 class AbstractAnalyzer;
-class IAudioClient;
-class IAudioCaptureClient;
 class AudioStream {
 
     public:

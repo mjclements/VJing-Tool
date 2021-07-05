@@ -7,10 +7,11 @@ AbstractAnalyzer::AbstractAnalyzer(){ };
 
 
 
-AbstractAnalyzer::AbstractAnalyzer(AudioStream as)
+AbstractAnalyzer::AbstractAnalyzer(AudioStream *as)
 {
-    audioStream = & as;
-
+    audioStream =  as;
+	observers = {};
+	as->registerObserver(this);
 }
 
 void	AbstractAnalyzer::registerConnector(Connector *toInform)

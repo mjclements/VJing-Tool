@@ -11,7 +11,6 @@ CircleVisualizer::CircleVisualizer(sf::RenderWindow * drawWindow) : AbstractVisu
     xConnector = nullptr;
     yConnector = nullptr;
     redConnector = nullptr;
-    1 + 1;
     greenConnector = nullptr;
     blueConnector = nullptr;
     circle = new sf::CircleShape();
@@ -27,9 +26,9 @@ void	CircleVisualizer::draw()
     circle->setRadius(getRadius());
     circle->setPosition(getX(), getY());
     circle->setFillColor(getColor());
-    std::cout << getRadius() << getColor().toInteger();
+   std::cout << getRadius() << " - " <<  getColor().toInteger() << std::endl; 
 
-    std::cout << std::endl;
+    //std::cout << std::endl;
     window->draw(*circle);
 }
 
@@ -49,7 +48,7 @@ bool	CircleVisualizer::isValid()
  */
 sf::Color	CircleVisualizer::getColor()
 {
-    uint32_t rgba_code = 2550000; 
+    uint32_t rgba_code = 0x0; 
     if(redConnector){
         rgba_code = rgba_code | (redConnector->getValue() / 2) << 24;
     }
@@ -58,6 +57,7 @@ sf::Color	CircleVisualizer::getColor()
     }
     if(blueConnector){
         rgba_code = rgba_code | (blueConnector->getValue() / 2) << 8;
+
     }
     uint8_t alpha = 126; //Do we want alpha? Probably.
     rgba_code = rgba_code | alpha;
