@@ -1,9 +1,10 @@
 
 #include "Connector.hpp"
-
-int32_t	 Connector::getValue()
+#include <iostream>
+int16_t	 Connector::getValue()
 {
-    return min + ((max - min ) * (value / 0xffffffff));
+     //std::cout << int( min + ((max - min ) * ((float) value / (float) 0xefff)) ) << std::endl;
+    return int( min + ((max - min ) * ((float) value / (float) 0xefff)) );
 
 }
 
@@ -14,7 +15,7 @@ void Connector::registerVisual(Visual *v)
 
 
 Connector::Connector(){
-    max = 0xffffffff;
+    max = 0xefff;
     min = 0;
     value = 0;
 }
@@ -23,9 +24,9 @@ Connector::~Connector(){
     
 }
 
-void Connector::setMax(uint32_t max){
+void Connector::setMax(uint16_t max){
     this->max = max;
 }
-void Connector::setMin(uint32_t min){
+void Connector::setMin(uint16_t min){
     this->min   = min;
 }

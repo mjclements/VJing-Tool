@@ -3,9 +3,9 @@
 
 class MultiFrameAvgConnector : public Connector {
     public:
-        MultiFrameAvgConnector(int64_t n);
-        void setValue(int64_t AnalysisValue);
-        int32_t getValue();
+        MultiFrameAvgConnector(int16_t n);
+        void setValue(int16_t AnalysisValue);
+        int16_t getValue();
     protected:
         std::vector<int> frames;
         int current;

@@ -19,7 +19,7 @@ void	AbstractAnalyzer::registerConnector(Connector *toInform)
 	observers.push_back(toInform);
 }
 
-int64_t	AbstractAnalyzer::getValue()
+int16_t	AbstractAnalyzer::getValue()
 {
 	return value;
 }

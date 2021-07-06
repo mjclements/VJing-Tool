@@ -1,6 +1,6 @@
 #include "MultiFrameMaxConnector.hpp"
 #include <algorithm>
-void	MultiFrameMaxConnector::setValue(int64_t AnalysisValue)
+void	MultiFrameMaxConnector::setValue(int16_t AnalysisValue)
 {
     frames[current] = AnalysisValue;
 
@@ -11,7 +11,7 @@ void	MultiFrameMaxConnector::setValue(int64_t AnalysisValue)
     });
 }
 
-MultiFrameMaxConnector::MultiFrameMaxConnector(int64_t frameMax){
+MultiFrameMaxConnector::MultiFrameMaxConnector(int16_t frameMax){
     current = 0;
     maxFrames = frameMax;
     for( int i = 0; i < frameMax; i++){
@@ -19,6 +19,6 @@ MultiFrameMaxConnector::MultiFrameMaxConnector(int64_t frameMax){
     }
 }
 
-int32_t MultiFrameMaxConnector::getValue(){
+int16_t MultiFrameMaxConnector::getValue(){
     return value;
 }

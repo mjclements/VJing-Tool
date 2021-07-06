@@ -3,7 +3,7 @@
 class LinearConnector : public Connector {
     public:
         LinearConnector();
-        void setValue(int64_t AnalysisValue);
-        int32_t getValue();
+        void setValue(int16_t AnalysisValue);
+        int16_t getValue();
 
 };

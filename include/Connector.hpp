@@ -5,17 +5,17 @@ class Visual;
 
 class Connector {
     public:
-        int32_t getValue();
+        int16_t getValue();
         void registerVisual(Visual *v);
-        virtual void setValue(int64_t AnalysisValue) {};
+        virtual void setValue(int16_t AnalysisValue) {};
         Connector();
         ~Connector();
-        void setMax(uint32_t max);
-        void setMin(uint32_t min);
+        void setMax(uint16_t max);
+        void setMin(uint16_t min);
     protected:
-        int64_t value;
+        int16_t value;
         std::vector<Visual *> visuals;
-        uint32_t max;
-        uint32_t min;
+        uint16_t max;
+        uint16_t min;
 };
 

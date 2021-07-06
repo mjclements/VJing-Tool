@@ -1,6 +1,6 @@
 #include "MultiFrameAvgConnector.hpp"
 #include <algorithm>
-void	MultiFrameAvgConnector::setValue(int64_t AnalysisValue)
+void	MultiFrameAvgConnector::setValue(int16_t AnalysisValue)
 {
     frames[current] = AnalysisValue;
 
@@ -11,7 +11,7 @@ void	MultiFrameAvgConnector::setValue(int64_t AnalysisValue)
     });
 }
 
-MultiFrameAvgConnector::MultiFrameAvgConnector(int64_t frameMax){
+MultiFrameAvgConnector::MultiFrameAvgConnector(int16_t frameMax){
     current = 0;
     maxFrames = frameMax;
     for( int i = 0; i < frameMax; i++){
@@ -19,6 +19,6 @@ MultiFrameAvgConnector::MultiFrameAvgConnector(int64_t frameMax){
     }
 }
 
-int32_t MultiFrameAvgConnector::getValue(){
+int16_t MultiFrameAvgConnector::getValue(){
     return value;
 }

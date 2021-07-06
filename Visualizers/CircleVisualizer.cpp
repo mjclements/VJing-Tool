@@ -24,9 +24,9 @@ CircleVisualizer::~CircleVisualizer()
 void	CircleVisualizer::draw()
 {
     circle->setRadius(getRadius());
-    ///circle->setPosition(getX(), getY());
+    circle->setPosition(getX(), getY());
     circle->setFillColor(getColor());
-   //std::cout << getRadius() << " - " <<  getColor().toInteger() << std::endl; 
+ //   std::cout << getX() << " - " <<  getY() << std::endl; 
 
     //std::cout << std::endl;
     window->draw(*circle);
