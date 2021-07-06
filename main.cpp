@@ -43,16 +43,12 @@ int main()
     va->registerConnector(inverse);
     va->registerConnector(unchanging);
     va->registerConnector(unchanging2);
-    
-    
 
     CircleVisualizer * bottomRight = new CircleVisualizer(vRender->window);
     bottomRight->setYConnector(unchanging2);
     bottomRight->setXConnector(inverse);
 
     bottomRight->setRedConnector(std);
-
-    
 
     va->registerConnector(std);
     va->registerConnector(lc2);

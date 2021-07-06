@@ -4,7 +4,7 @@
 int16_t	 Connector::getValue()
 {
      //std::cout << int( min + ((max - min ) * ((float) value / (float) 0xefff)) ) << std::endl;
-    return int( min + ((max - min ) * ((float) value / (float) 0xefff)) );
+    return int( min + ((max - min ) * ((float) value / (float) 0x7fff)) );
 
 }
 

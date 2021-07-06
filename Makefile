@@ -7,11 +7,11 @@ FLAGS 	= -lsfml-window -lsfml-system -lsfml-graphics -lole32
 ##All header files should be present in the ./include directory
 
 #Audiostream being in the main directory is feeling kinda like a hack
-all:	main.cpp
+all:	main4.cpp
 	cd lib && $(CXX_COMPILER)  -c ../Connectors/*.cpp -I'../include/' -L'../lib' $(FLAGS)
 	cd lib && $(CXX_COMPILER)  -c ../Analyzers/*.cpp -I'../include/' -L'../lib' $(FLAGS)
 	cd lib && $(CXX_COMPILER)  -c ../Visualizers/*.cpp -I'../include/' -L'../lib' $(FLAGS)
-	$(CXX_COMPILER) main.cpp AudioStream.cpp $(shell find lib/*.o)  -I'./include/'  $(FLAGS)
+	$(CXX_COMPILER) main4.cpp AudioStream.cpp $(shell find lib/*.o)  -I'./include/'  $(FLAGS)
 	
 
 # ##Build every cpp file in Visualizers/ directory

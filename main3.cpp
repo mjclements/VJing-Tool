@@ -29,63 +29,97 @@ int main()
     VolumeAnalyzer *va = new VolumeAnalyzer(as);
 
     LinearConnector *regularX  = new LinearConnector();
-    regularX->setMin(0);
-    regularX->setMax(size1);
+    regularX->setMin(size1/2);
+    regularX->setMax(size1/2);
 
     LinearConnector *regularY  = new LinearConnector();
-    regularY->setMin(0);
-    regularY->setMax(size2);
-
-    LinearConnector *invX  = new LinearConnector();
-    invX->setMin(size1);
-    invX->setMax(0);
-
-    LinearConnector *invY  = new LinearConnector();
-    invY->setMin(size2);
-    invY->setMax(0);
+    regularY->setMin(size2/2);
+    regularY->setMax(size2/2);
 
     LinearConnector *pointy  = new LinearConnector();
     pointy->setMin(3);
     pointy->setMax(25);
+
+    LinearConnector *pointy2  = new LinearConnector();
+    pointy2->setMin(25);
+    pointy2->setMax(3);
  
-    MultiFrameAvgConnector *std = new MultiFrameAvgConnector(25);
+    MultiFrameAvgConnector *rRange = new MultiFrameAvgConnector(25);
+    rRange->setMax(500);
+    rRange->setMin(0);
+
+    MultiFrameAvgConnector *colorRange = new MultiFrameAvgConnector(25);
+    rRange->setMax(500);
+    rRange->setMin(100);
 
     LinearConnector * rad = new LinearConnector();
     rad->setMax(400);
     rad->setMin(50);
 
+    LinearConnector * tlA = new LinearConnector();
+    tlA->setMin(0);
+    tlA->setMax(90);
+
+    LinearConnector * trA = new LinearConnector();
+    trA->setMin(180);
+    trA->setMax(90);
+
+    LinearConnector * brA = new LinearConnector();
+    brA->setMin(180);
+    brA->setMax(270);
+
+    LinearConnector * blA = new LinearConnector();
+    blA->setMin(360);
+    blA->setMax(270);
+
+
     va->registerConnector(regularX);
     va->registerConnector(regularY);
-    va->registerConnector(invX);
-    va->registerConnector(invY);
     va->registerConnector(pointy);
+    va->registerConnector(tlA);
+    va->registerConnector(trA);
+    va->registerConnector(blA);
+    va->registerConnector(brA);
+    va->registerConnector(pointy2);
 
     tl->setXConnector(regularX);
     tl->setYConnector(regularY);
-    tl->setRedConnector(std);
+    tl->setRedConnector(colorRange);
     tl->setRadiusConnector(rad);
     tl->setPointCountConnector(pointy);
+    tl->setRConnector(rRange);
+    tl->setAngleConnector(tlA);
 
 
     tr->setXConnector(regularX);
-    tr->setYConnector(invY);
-    tr->setBlueConnector(std);
+    tr->setYConnector(regularY);
+    tr->setBlueConnector(colorRange);
     tr->setRadiusConnector(rad);
+    tr->setRConnector(rRange);
+    tr->setAngleConnector(trA);
+    tr->setPointCountConnector(pointy2);
+
+    
 
 
 
-    bl->setXConnector(invX);
+    bl->setXConnector(regularX);
     bl->setYConnector(regularY);
-    bl->setGreenConnector(std);
+    bl->setGreenConnector(colorRange);
     bl->setRadiusConnector(rad);
+    bl->setRConnector(rRange);
+    bl->setAngleConnector(blA);
+    bl->setPointCountConnector(pointy);
 
 
-    br->setXConnector(invX);
-    br->setYConnector(invY);
-    br->setBlueConnector(std);
-    br->setGreenConnector(std);
+    br->setXConnector(regularX);
+    br->setYConnector(regularY);
+    br->setBlueConnector(colorRange);
+    br->setGreenConnector(colorRange);
     br->setRadiusConnector(rad);
-    br->setPointCountConnector(pointy);
+    br->setPointCountConnector(pointy2);
+    br->setRConnector(rRange);
+    br->setAngleConnector(brA);
 
 
 
@@ -109,22 +143,12 @@ int main()
     bottom->setYConnector(unchanging);
     bottom->setXConnector(inverse);
 
-    bottom->setBlueConnector(std);
+    bottom->setBlueConnector(colorRange);
 
-    va->registerConnector(std);
+    va->registerConnector(rRange);
+    va->registerConnector(colorRange);
     va->registerConnector(lc2);
-   // std::cout << size1 << "," << size2;
-    // for(int i = 0; i < size1; i+= 200){
-    //     for(int j = 0; j < size2; j += 200){
-    //         CircleVisualizer *temp = new CircleVisualizer(vRender->window);
-    //         temp->circle->setPosition(i,j);
-    //         temp->setBlueConnector(lc2);
-    //         temp->setRedConnector(lc2);
-    //         temp->setGreenConnector(lc2);
-    //         circles.push_back(temp);
 
-    //     }
-    // }
     CircleVisualizer *c = new CircleVisualizer(vRender->window);
     lc2->setMax(800);
     LinearConnector *lc3 = new LinearConnector();
@@ -132,15 +156,8 @@ int main()
     c->setXConnector(lc2);
     c->setYConnector(lc3);
 
-//    c->setBlueConnector(std);
-        c->setRedConnector(std);
-            c->setGreenConnector(std);
-
-
-
-
-
-    //cv->setGreenConnector(lc);
+    c->setRedConnector(colorRange);
+    c->setGreenConnector(colorRange);
 
     while (vRender->window->isOpen())
     {
@@ -149,9 +166,6 @@ int main()
         tr->draw();
         bl->draw();
         br->draw();
-        // for(CircleVisualizer *c : circles){
- //       bottom->draw();
-        // }
         vRender->window->display();
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
