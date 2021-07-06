@@ -1,0 +1,58 @@
+C_COMPILER	=	gcc
+CXX_COMPILER	=	g++
+
+INCLUDE_DIR	=	-I './include' 
+
+ANALYZER_SRC = 	$(wildcard Analyzers/*.cpp)
+CONNECTORS_SRC =	$(wildcard Connectors/*.cpp)	
+VISUALIZERS_SRC = $(wildcard Visualizers/*.cpp)	
+
+ANALYZER_OBJ =	$(patsubst %.cpp, %.o, $(ANALYZER_SRC))
+CONNECTORS_OBJ =	$(patsubst %.cpp, %.o, $(CONNECTORS_SRC))
+VISUALIZERS_OBJ =	$(patsubst %.cpp, %.o, $(VISUALIZERS_SRC))
+
+#FLAGS	=	-lole32
+FLAGS 	= -lsfml-window -lsfml-system -lsfml-graphics -lole32 --std=c++2a
+##All objects files will be stored in the ./lib directorya
+##All header files should be present in the ./include directory
+
+#Audiostream being in the main directory is feeling kinda like a hack
+all:	main.cpp $(ANALYZER_OBJ) $(CONNECTORS_OBJ) $(VISUALIZERS_OBJ)
+	@echo 'Building application'
+#	cd lib && $(CXX_COMPILER)  -c ../Connectors/*.cpp -I'../include/' -L'../lib' $(FLAGS)
+#	cd lib && $(CXX_COMPILER)  -c ../Analyzers/*.cpp -I'../include/' -L'../lib' $(FLAGS)
+#	cd lib && $(CXX_COMPILER)  -c ../Visualizers/*.cpp -I'../include/' -L'../lib' $(FLAGS)
+	$(CXX_COMPILER) main.cpp AudioStream.cpp $(shell find lib/*.o)  $(INCLUDE_DIR) $(FLAGS) 
+	
+$(ANALYZER_OBJ)	&:	$(ANALYZER_SRC)
+	@echo 'Current Build Targets:'
+	@echo $(ANALYZER_OBJ)
+	$(CXX_COMPILER)  -c	$(INCLUDE_DIR) $(ANALYZER_SRC) $(FLAGS) 
+
+$(CONNECTORS_OBJ)	&:	$(CONNECTORS_SRC)
+	@echo 'Current Build Targets:'
+	@echo $(CONNECTORS_OBJ)
+	$(CXX_COMPILER)  -c	$(INCLUDE_DIR) $(CONNECTORS_SRC) $(FLAGS) 
+
+$(VISUALIZERS_OBJ)	&:	$(VISUALIZERS_SRC)
+	@echo 'Current Build Targets:'
+	@echo $(VISUALIZERS_OBJ)
+	$(CXX_COMPILER)  -c	$(INCLUDE_DIR) $(VISUALIZERS_SRC) $(FLAGS) 
+
+	b
+# ##Build every cpp file in Visualizers/ directory
+# visualizers:	$(shell find Visualizers/)
+# 	cd lib && $(CXX_COMPILER)  -c ../Visualizers/*.cpp -I'../include/' -L'../lib' $(FLAGS)
+
+# ##Build every cpp file in Analyzers/ directory
+# analyzers:	$(shell find Analyzers)
+# 	cd lib && $(CXX_COMPILER)  -c ../Analyzers/*.cpp -I'../include/' -L'../lib' $(FLAGS)
+
+# ##Build every cpp file in Connectors/ directory
+# connectors:	$(shell find Connectors)
+# 	cd lib && $(CXX_COMPILER)  -c ../Connectors/*.cpp -I'../include/' 
+
+clean:	
+	rm lib/*
+	rm a.out
+	rm a.exe
