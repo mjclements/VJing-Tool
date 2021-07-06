@@ -3,13 +3,14 @@
 #include "VisualRenderer.hpp"
 #include "CircleVisualizer.hpp"
 #include "AudioStream.hpp"
-#include "MultiFrameMaxConnector.hpp"
+#include "MultiFrameAvgConnector.hpp"
 #include "StdDevConnector.hpp"
 
 #include "LinearConnector.hpp"
 #include <iostream>
 
 #include "VolumeAnalyzer.hpp"
+//four circles that collide in the center and their radii enlarge in the center
 int main()
 {
 
@@ -21,8 +22,8 @@ int main()
     CircleVisualizer *br = new CircleVisualizer(vRender->window);
 
     auto sizes = vRender->window->getSize();
-    auto size1 = sizes.x;
-    auto size2 = sizes.y;
+    auto size1 = sizes.x - 100;
+    auto size2 = sizes.y - 100;
     AudioStream *as = new AudioStream();
     VolumeAnalyzer *va = new VolumeAnalyzer(as);
 
@@ -42,11 +43,11 @@ int main()
     invY->setMin(size2);
     invY->setMax(0);
  
-    StdDevConnector *std = new StdDevConnector();
+    MultiFrameAvgConnector *std = new MultiFrameAvgConnector(25);
 
     LinearConnector * rad = new LinearConnector();
-    rad->setMax(110);
-    rad->setMin(90;
+    rad->setMax(400);
+    rad->setMin(50);
 
     va->registerConnector(regularX);
     va->registerConnector(regularY);
@@ -57,7 +58,6 @@ int main()
     tl->setYConnector(regularY);
     tl->setRedConnector(std);
     tl->setRadiusConnector(rad);
-
 
 
     tr->setXConnector(regularX);
@@ -77,17 +77,16 @@ int main()
     br->setYConnector(invY);
     br->setBlueConnector(std);
     br->setGreenConnector(std);
-    br->setRadiusConnector(std);
+    br->setRadiusConnector(rad);
 
 
 
 
 
 
-    MultiFrameMaxConnector *lc = new MultiFrameMaxConnector(15);
+    //MultiFrameMaxConnector *lc = new MultiFrameMaxConnector(15);
     std::vector<CircleVisualizer *> circles = {};
     LinearConnector *lc2 = new LinearConnector();
-    StdDevConnector *std = new StdDevConnector(15);
     LinearConnector *unchanging = new LinearConnector();
     unchanging->setMax(200);
     unchanging->setMin(200);

@@ -3,13 +3,14 @@
 #include "VisualRenderer.hpp"
 #include "CircleVisualizer.hpp"
 #include "AudioStream.hpp"
-#include "MultiFrameMaxConnector.hpp"
+#include "MultiFrameAvgConnector.hpp"
 #include "StdDevConnector.hpp"
 
 #include "LinearConnector.hpp"
 #include <iostream>
 
 #include "VolumeAnalyzer.hpp"
+//two rows of circles red and blue colliding on the x axis to make purple
 int main()
 {
 
@@ -25,24 +26,33 @@ int main()
     auto size2 = sizes.y;
     AudioStream *as = new AudioStream();
     VolumeAnalyzer *va = new VolumeAnalyzer(as);
-    MultiFrameMaxConnector *lc = new MultiFrameMaxConnector(15);
+    //MultiFrameMaxConnector *lc = new MultiFrameMaxConnector(15);
     std::vector<CircleVisualizer *> circles = {};
     LinearConnector *lc2 = new LinearConnector();
-    StdDevConnector *std = new StdDevConnector(15);
+    MultiFrameAvgConnector *std = new MultiFrameAvgConnector(15);
     LinearConnector *unchanging = new LinearConnector();
     unchanging->setMax(200);
     unchanging->setMin(200);
+    LinearConnector *unchanging2 = new LinearConnector();
+    unchanging2->setMax(400);
+    unchanging2->setMin(400);
+
     LinearConnector *inverse = new LinearConnector();
-    inverse->setMax(0);
+    inverse->setMax(100);
     inverse->setMin(600);
     va->registerConnector(inverse);
     va->registerConnector(unchanging);
+    va->registerConnector(unchanging2);
+    
+    
 
-    CircleVisualizer * bottom = new CircleVisualizer(vRender->window);
-    bottom->setYConnector(unchanging);
-    bottom->setXConnector(inverse);
+    CircleVisualizer * bottomRight = new CircleVisualizer(vRender->window);
+    bottomRight->setYConnector(unchanging2);
+    bottomRight->setXConnector(inverse);
 
-    bottom->setBlueConnector(std);
+    bottomRight->setRedConnector(std);
+
+    
 
     va->registerConnector(std);
     va->registerConnector(lc2);
@@ -58,16 +68,25 @@ int main()
 
     //     }
     // }
-    CircleVisualizer *c = new CircleVisualizer(vRender->window);
-    lc2->setMax(800);
+    CircleVisualizer *topLeft = new CircleVisualizer(vRender->window);
+    lc2->setMax(700);
+
     LinearConnector *lc3 = new LinearConnector();
     lc3->setMax(size2);
-    c->setXConnector(lc2);
-    c->setYConnector(lc3);
+    CircleVisualizer * topRight = new CircleVisualizer(vRender->window);
+    topRight->setXConnector(inverse);
+    topRight->setYConnector(lc3);
+    topRight->setBlueConnector(std);
+    topLeft->setXConnector(lc2);
+    topLeft->setYConnector(lc3);
+    CircleVisualizer * bottomLeft = new CircleVisualizer(vRender->window);
+    bottomLeft->setYConnector(unchanging2);
+    bottomLeft->setXConnector(lc2);
+    bottomLeft->setBlueConnector(std);
 
 //    c->setBlueConnector(std);
-        c->setRedConnector(std);
-            c->setGreenConnector(std);
+    topLeft->setRedConnector(std);
+            
 
 
 
@@ -79,8 +98,10 @@ int main()
     {
         as->getFrame();
         // for(CircleVisualizer *c : circles){
-        c->draw();
-        bottom->draw();
+        topLeft->draw();
+        bottomRight->draw();
+        bottomLeft->draw();
+        topRight->draw();
         // }
         vRender->window->display();
         // check all the window's events that were triggered since the last iteration of the loop

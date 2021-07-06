@@ -56,3 +56,6 @@ clean:
 	rm lib/*
 	rm a.out
 	rm a.exe
+
+
+C://ProgramData/chocolatey/bin/c++.exe   main2.cpp AudioStream.cpp lib/AbstractAnalyzer.o lib/AbstractVisualizer.o lib/BassAnalyzer.o lib/CircleVisualizer.o lib/Connector.o lib/LinearConnector.o lib/MultiFrameAvgConnector.o lib/MultiFrameMaxConnector.o lib/StdDevConnector.o lib/VisualRenderer.o lib/VolumeAnalyzer.o  -I'./include/'  -lsfml-window -lsfml-system -lsfml-graphics -lole32
