@@ -10,10 +10,12 @@ class Connector {
         virtual void setValue(int64_t AnalysisValue) {};
         Connector();
         ~Connector();
+        void setMax(uint32_t max);
+        void setMin(uint32_t min);
     protected:
         int64_t value;
         std::vector<Visual *> visuals;
-
-
+        uint32_t max;
+        uint32_t min;
 };
 

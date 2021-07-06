@@ -3,7 +3,8 @@
 
 int32_t	 Connector::getValue()
 {
-    return value;
+    return min + ((max - min ) * (value / 0xffffffff));
+
 }
 
 void Connector::registerVisual(Visual *v)
@@ -13,9 +14,18 @@ void Connector::registerVisual(Visual *v)
 
 
 Connector::Connector(){
-
+    max = 0xffffffff;
+    min = 0;
+    value = 0;
 }
 
 Connector::~Connector(){
     
+}
+
+void Connector::setMax(uint32_t max){
+    this->max = max;
+}
+void Connector::setMin(uint32_t min){
+    this->min   = min;
 }
