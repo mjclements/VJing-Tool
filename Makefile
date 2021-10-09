@@ -19,7 +19,7 @@ all:	$(OBJ)
 
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c*
-	$(CC) -I'./include' $(CCOBJFLAGS) -o $@ $<
+	$(CXX_COMPILER) -I'./include' $(CCOBJFLAGS) -o $@ $<
 
 # ##Build every cpp file in Visualizers/ directory
 # visualizers:	$(shell find Visualizers/)
