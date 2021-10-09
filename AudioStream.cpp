@@ -51,6 +51,20 @@ std::vector<int16_t> AudioStream::getFrame(){
     UINT32 packetLength = 0;
     hr = captureClient->GetNextPacketSize(&packetLength);
     hr = captureClient->GetBuffer(&bufferByte, &numberOfAvailableFrames, &flags, &devicePosition, &qpcPosition );
+
+    IPropertyStore* store = nullptr;
+   PROPVARIANT prop;
+
+    hr = pp->OpenPropertyStore(STGM_READ, &store);
+    if (FAILED(hr)) {
+        std::cout << "OpenPropertyStore failed!" << std::endl;
+    }
+
+   hr = store->GetValue(PKEY_AudioEngine_DeviceFormat, &prop);
+    if (FAILED(hr)) {
+        std::cout << "GetValue failed!" << std::endl;
+    }
+
     
     assert( hr == S_OK || hr == AUDCLNT_S_BUFFER_EMPTY);
     int16_t* codePointer = (int16_t*) bufferByte;
