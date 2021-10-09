@@ -72,21 +72,21 @@ int main()
     MultiFrameAvgConnector *colorRange = new MultiFrameAvgConnector(25);
 
     
-    for(int i = 0; i < 14; i++){
-        CircleVisualizer *temp = new CircleVisualizer(vRender->window);
-        temp->setBrightnessConnector(colorRange);
-        LinearConnector *spinner = new LinearConnector();
-        va->registerConnector(spinner);
-        spinner->setMin(i*30);
-        spinner->setMax(i*30 + 360);
-        temp->setAngleConnector(spinner);
-        temp->setAlphaConnector(tc);
-        temp->setXConnector(irregularX);
-        temp->setYConnector(irregularY);
-        temp->setRConnector(spinRad); //spinner radius
-        temp->setRadiusConnector(radius); // circle radius
-        circles.push_back(temp);
-    }
+    // for(int i = 0; i < 14; i++){
+    //     CircleVisualizer *temp = new CircleVisualizer(vRender->window);
+    //     temp->setBrightnessConnector(colorRange);
+    //     LinearConnector *spinner = new LinearConnector();
+    //     va->registerConnector(spinner);
+    //     spinner->setMin(i*30);
+    //     spinner->setMax(i*30 + 360);
+    //     temp->setAngleConnector(spinner);
+    //     temp->setAlphaConnector(tc);
+    //     temp->setXConnector(irregularX);
+    //     temp->setYConnector(irregularY);
+    //     temp->setRConnector(spinRad); //spinner radius
+    //     temp->setRadiusConnector(radius); // circle radius
+    //     circles.push_back(temp);
+    // }
     
     LinearConnector *pointy  = new LinearConnector();
     pointy->setMin(3);
