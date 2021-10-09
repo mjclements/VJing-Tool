@@ -194,9 +194,11 @@ int main()
     lc3->setMax(size2);
     c->setXConnector(lc2);
     c->setYConnector(lc3);
-
+    c->setOutlineColorConnector(lc3);
+    c->setThicknessConnector(lc2);
     c->setRedConnector(colorRange);
     c->setGreenConnector(colorRange);
+    
 
     while (vRender->window->isOpen())
     {

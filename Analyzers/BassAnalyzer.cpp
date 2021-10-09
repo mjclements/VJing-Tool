@@ -20,10 +20,6 @@ void BassAnalyzer::setValue(std::vector<int16_t> *PCMCodes)
 	
 }
 
-BassAnalyzer::~BassAnalyzer()
-{
-	
-}
 
 BassAnalyzer::BassAnalyzer()
 {

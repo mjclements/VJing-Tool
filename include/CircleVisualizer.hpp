@@ -21,6 +21,9 @@ class CircleVisualizer: public AbstractVisualizer{
         void setRConnector(Connector* connector );
         void setAngleConnector(Connector* connector );
         void setAlphaConnector(Connector* connector );
+        void setThicknessConnector(Connector* connector);
+        void setOutlineColorConnector(Connector* connector);
+
 
         sf::CircleShape *circle;
 
@@ -38,11 +41,14 @@ class CircleVisualizer: public AbstractVisualizer{
         Connector *rConnector;
         Connector *angleConnector;
         Connector * alphaConnector;
+        Connector* thicknessConnector;
+        Connector* outlineColorConnector;
         uint16_t getPointCount();
         uint16_t getRadius();
         uint16_t getX();
         uint16_t getY();
         sf::Color getColor();
+        sf::Color getOutlineColor();
     private:
  //       sf::CircleShape *circle;
 

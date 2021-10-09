@@ -14,6 +14,8 @@ CircleVisualizer::CircleVisualizer(sf::RenderWindow *drawWindow) : AbstractVisua
     greenConnector = nullptr;
     blueConnector = nullptr;
     pointCountConnector = nullptr;
+    thicknessConnector = nullptr;
+    outlineColorConnector = nullptr;
     rConnector = nullptr;
     angleConnector = nullptr;
     alphaConnector = nullptr;
@@ -30,6 +32,10 @@ void CircleVisualizer::draw()
     circle->setRadius(getRadius());
     circle->setPosition(getX(), getY());
     circle->setFillColor(getColor());
+    circle->setOutlineColor(getColor());
+    //circle->setThicknessConnector(getRadius());
+    circle->setOutlineThickness(thicknessConnector->getValue());
+    circle->setOutlineColor(getOutlineColor());
     circle->setPointCount(getPointCount());
     //   std::cout << getX() << " - " <<  getY() << std::endl;
 
@@ -60,6 +66,30 @@ sf::Color CircleVisualizer::getColor()
     if (greenConnector)
     {
         rgba_code = rgba_code | (greenConnector->getValue() / 2) << 16;
+    }
+    if (blueConnector)
+    {
+        rgba_code = rgba_code | (blueConnector->getValue() / 2) << 8;
+    }
+    if(alphaConnector){
+        rgba_code = rgba_code | (alphaConnector->getValue()/2);
+    }
+    else{
+        rgba_code = rgba_code | 126;
+    }
+
+    return sf::Color(rgba_code);
+}
+sf::Color CircleVisualizer::getOutlineColor()
+{
+    uint32_t rgba_code = 0x0;
+    if (greenConnector)
+    {
+        rgba_code = rgba_code | (greenConnector->getValue() / 2) << 24;
+    }
+    if (redConnector)
+    {
+        rgba_code = rgba_code | (redConnector->getValue() / 2) << 16;
     }
     if (blueConnector)
     {
@@ -184,3 +214,9 @@ void CircleVisualizer::setPointCountConnector(Connector *connector)
 {
     pointCountConnector = connector;
 }
+void CircleVisualizer::setThicknessConnector(Connector *connector)
+{
+    thicknessConnector = connector;
+}
+
+
